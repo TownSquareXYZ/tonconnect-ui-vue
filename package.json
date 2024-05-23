@@ -7,6 +7,19 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "keywords": [
+    "TON",
+    "Wallet",
+    "ton-connect",
+    "tonconnect",
+    "Connect",
+    "Tonkeeper",
+    "sdk",
+    "UI",
+    "Vue"
+  ],
+  "author": "TownSquareXYZ",
+  "license": "Apache-2.0",
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^3.2.13"
