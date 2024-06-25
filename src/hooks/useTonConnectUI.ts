@@ -1,23 +1,21 @@
-import { ref, inject, onMounted } from "vue";
-import { TonConnectUI, TonConnectUiOptions } from "@tonconnect/ui";
-import { checkProvider } from "../utils/errors";
-import { isServerSide } from "../utils/web";
+import { inject, Ref } from 'vue-demi';
+import { TonConnectUI, TonConnectUiOptions } from '@tonconnect/ui';
+import { checkProvider } from '../utils/errors';
+import { isServerSide } from '../utils/web';
 
-export function useTonConnectUI() {
-  const tonConnectUI = inject<TonConnectUI | null>("tonConnectUI", null);
-  const setOptions = (options: TonConnectUiOptions) => {
-    if (tonConnectUI?.value) {
-      tonConnectUI.value.uiOptions = options;
-    }
-  };
+export function useTonConnectUI(): [TonConnectUI, (options: TonConnectUiOptions) => void] {
+    const tonConnectUI = inject('tonConnectUI') as TonConnectUI | null;
 
-  onMounted(() => {
+    const setOptions = (options) => {
+        if (tonConnectUI) {
+            tonConnectUI.uiOptions = options;
+        }
+    };
+
     if (isServerSide()) {
-      return;
+        return [null as unknown as TonConnectUI, () => { }];
     }
 
-    checkProvider(tonConnectUI?.value);
-  });
-
-  return { tonConnectUI, setOptions };
+    checkProvider(tonConnectUI);
+    return [tonConnectUI!, setOptions];
 }
