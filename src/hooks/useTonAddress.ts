@@ -19,7 +19,6 @@ export function useTonAddress(userFriendly = true) {
         }
     };
 
-    // 监听钱包的变化，更新 TON 地址
     watchEffect(() => {
         updateTonAddress();
     });
