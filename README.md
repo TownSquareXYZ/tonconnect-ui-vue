@@ -18,18 +18,21 @@ You can find more details and the protocol specification in the [docs](https://d
 
 ## Installation with npm
 `npm i @townsquarexyz/ui-vue`
+## Installation with npm
+`yarn add @townsquarexyz/ui-vue`
 
 # Usage
 
 ## Add TonConnectUIProvider
 Add TonConnectUIProvider to the root of the app. You can specify UI options using props.
-[See all available options](https://ton-connect.github.io/sdk/types/_tonconnect_ui_vue.TonConnectUIProviderProps.html)
+// todo
+<!-- [See all available options](https://ton-connect.github.io/sdk/types/_tonconnect_ui_react.TonConnectUIProviderProps.html) -->
 
 All TonConnect UI hooks calls and `<TonConnectButton />` component must be placed inside `<TonConnectUIProvider>`.
 
 ```vue
 <template>
-  <TonConnectUIProvider :manifestUrl="'https://<YOUR_APP_URL>/tonconnect-manifest.json'">
+  <TonConnectUIProvider :options="options">
     <!-- Your app -->
   </TonConnectUIProvider>
 </template>
@@ -40,6 +43,14 @@ import { TonConnectUIProvider } from '@townsquarexyz/ui-vue';
 export default {
   components: {
     TonConnectUIProvider
+  },
+  setup(){
+    const options = {
+      manifestUrl:"https://<YOUR_APP_URL>/tonconnect-manifest.json",
+    };
+    return {
+      options
+    }
   }
 }
 </script>
@@ -53,7 +64,7 @@ It is recommended to place it in the top right corner of your app.
 <template>
   <header>
     <span>My App with Vue UI</span>
-    <TonConnectButton />
+    <TonConnectButton/>
   </header>
 </template>
 
@@ -106,9 +117,9 @@ export default {
 Use it to get user's current ton wallet. If wallet is not connected hook will return null.
 
 See all wallet's properties
-
-[Wallet interface](https://ton-connect.github.io/sdk/interfaces/_tonconnect_sdk.Wallet.html)
-[WalletInfo interface](https://ton-connect.github.io/sdk/types/_tonconnect_sdk.WalletInfo.html)
+// todo
+<!-- [Wallet interface](https://ton-connect.github.io/sdk/interfaces/_tonconnect_sdk.Wallet.html) -->
+<!-- [WalletInfo interface](https://ton-connect.github.io/sdk/types/_tonconnect_sdk.WalletInfo.html) -->
 
 ```vue
 <template>
@@ -151,7 +162,6 @@ Use this hook to access the functions for opening and closing the modal window. 
 import { useTonConnectModal } from '@townsquarexyz/ui-vue';
 
 export default {
-  name: 'ModalControl',
   setup() {
     const { state, open, close } = useTonConnectModal();
     return { state, open, close };
@@ -177,6 +187,7 @@ Use it to get access to the `TonConnectUI` instance and UI options updating func
       <select @change="onLanguageChange($event.target.value)">
         <option value="en">en</option>
         <option value="ru">ru</option>
+        <option value="zh">zh</option>
       </select>
     </div>
   </div>
@@ -227,7 +238,7 @@ You can use it to detect when connection restoring process if finished.
 ```vue
 <template>
   <div>
-    <Loader v-if="!connectionRestored">Please wait...</Loader>
+    <div v-if="!connectionRestored">Please wait...</div>
     <MainPage v-else />
   </div>
 </template>
@@ -339,35 +350,6 @@ onMounted(() =>
 
 # Troubleshooting
 
-## Android Back Handler
-
-If you encounter any issues with the Android back handler, such as modals not closing properly when the back button is pressed, or conflicts with `history.pushState()` if you are manually handling browser history in your application, you can disable the back handler by setting `enableAndroidBackHandler` to `false`:
-
-```vue
-<template>
-  <TonConnectUIProvider 
-    :manifestUrl="'https://<YOUR_APP_URL>/tonconnect-manifest.json'"
-    :enableAndroidBackHandler="false"
-  >
-    <!-- Your app -->
-  </TonConnectUIProvider>
-</template>
-
-<script>
-import { TonConnectUIProvider } from '@townsquarexyz/ui-vue';
-
-export default {
-  components: {
-    TonConnectUIProvider
-  }
-}
-</script>
-```
-
-This will disable the custom back button behavior on Android, and you can then handle the back button press manually in your application.
-
-While we do not foresee any problems arising with the Android back handler, but if you find yourself needing to disable it due to an issue, please describe the problem in on [GitHub Issues](https://github.com/ton-connect/sdk/issues), so we can assist you further.
-
 ## Animations not working
 
 If you are experiencing issues with animations not working in your environment, it might be due to a lack of support for the Web Animations API. To resolve this issue, you can use the `web-animations-js` polyfill.
@@ -395,28 +377,3 @@ Alternatively, you can include the polyfill via CDN by adding the following scri
 ```
 
 Both methods will provide a fallback implementation of the Web Animations API and should resolve the animation issues you are facing.
-
-## Warning about 'encoding' module in Nuxt.js
-
-If you are using Nuxt.js and see a warning similar to the following:
-
-```
- ⚠ ./node_modules/node-fetch/lib/index.js
-Module not found: Can't resolve 'encoding' in '.../node_modules/node-fetch/lib'
-
-Import trace for requested module:
-./node_modules/node-fetch/lib/index.js
-./node_modules/@tonconnect/isomorphic-fetch/index.mjs
-./node_modules/@tonconnect/sdk/lib/esm/index.mjs
-./node_modules/@tonconnect/ui/lib/esm/index.mjs
-./node_modules/@townsquarexyz/ui-vue/lib/esm/index.js
-```
-
-Please note that this is just a warning and should not affect the functionality of your application. If you wish to suppress the warning, you have two options:
-
-1. (Recommended) Wait for us to remove the dependency on `@tonconnect/isomorphic-fetch` in future releases. This dependency will be removed when we drop support for Node.js versions below 18.
-
-2. (Optional) Install the `encoding` package, to resolve the warning:
-```shell
-npm install encoding
-```
