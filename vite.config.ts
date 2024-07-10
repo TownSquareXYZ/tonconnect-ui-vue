@@ -23,7 +23,7 @@ export default defineConfig({
     exclude: ["csstype", "vue-demi"],
   },
   build: {
-    target: "es2018", // 将目标改为 es2018
+    target: "es2018",
     outDir: isVue2 ? "lib/vue2" : "lib/vue3",
     emptyOutDir: true,
     minify: false,
@@ -31,7 +31,7 @@ export default defineConfig({
     lib: {
       formats: ["es", "cjs"],
       entry: path.resolve("src/index.ts"),
-      name: "tonconnect-vue", // 修改库的名称为 Vue 版本
+      name: "tonconnect-vue",
       fileName: (format) => {
         switch (format) {
           case "es":
@@ -44,11 +44,11 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: ["vue", "vue-router", "@tonconnect/ui"], // 替换 external 中的依赖
+      external: ["vue", "vue-router", "@tonconnect/ui"],
       output: {
         globals: {
-          vue: "Vue", // 修改全局变量映射
-          "vue-router": "VueRouter", // 修改全局变量映射
+          vue: "Vue",
+          "vue-router": "VueRouter",
           "@tonconnect/ui": "TON_CONNECT_UI",
         },
       },
