@@ -1,7 +1,7 @@
 {
-  "name": "@townsquarexyz/ui-vue",
+  "name": "@townsquarelabs/ui-vue",
   "private": false,
-  "version": "1.0.4",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,6 +16,28 @@
     "prepare": "husky",
     "link": "yarn link"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "TonConnect UI Vue is a Vue UI kit for TonConnect SDK. Use it to connect your app to TON wallets via TonConnect protocol in Vue apps.",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TownSquareXYZ/tonconnect-ui-vue.git"
+  },
+  "keywords": [
+    "ton",
+    "townsquarexyz"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TownSquareXYZ/tonconnect-ui-vue/issues"
+  },
+  "homepage": "https://github.com/TownSquareXYZ/tonconnect-ui-vue#readme",
   "files": [
     "lib",
     "scripts"

@@ -31,7 +31,7 @@ export default defineConfig({
     lib: {
       formats: ["es", "cjs"],
       entry: path.resolve("src/index.ts"),
-      name: "tonconnect-vue",
+      name: "@townsquarelabs/ui-vue",
       fileName: (format) => {
         switch (format) {
           case "es":

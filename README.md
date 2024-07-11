@@ -17,9 +17,9 @@ You can find more details and the protocol specification in the [docs](https://d
 # Getting started
 
 ## Installation with npm
-`npm i @townsquarexyz/ui-vue`
+`npm i @townsquarelabs/ui-vue`
 ## Installation with npm
-`yarn add @townsquarexyz/ui-vue`
+`yarn add @townsquarelabs/ui-vue`
 
 # Usage
 
@@ -38,7 +38,7 @@ All TonConnect UI hooks calls and `<TonConnectButton />` component must be place
 </template>
 
 <script>
-import { TonConnectUIProvider } from '@townsquarexyz/ui-vue';
+import { TonConnectUIProvider } from '@townsquarelabs/ui-vue';
 
 export default {
   components: {
@@ -69,7 +69,7 @@ It is recommended to place it in the top right corner of your app.
 </template>
 
 <script>
-import { TonConnectButton } from '@townsquarexyz/ui-vue';
+import { TonConnectButton } from '@townsquarelabs/ui-vue';
 
 export default {
   components: {
@@ -97,7 +97,7 @@ Use it to get user's current ton wallet address. Pass boolean parameter isUserFr
 </template>
 
 <script>
-import { useTonAddress } from '@townsquarexyz/ui-vue';
+import { useTonAddress } from '@townsquarelabs/ui-vue';
 
 export default {
   setup() {
@@ -130,7 +130,7 @@ See all wallet's properties
 </template>
 
 <script>
-import { useTonWallet } from '@townsquarexyz/ui-vue';
+import { useTonWallet } from '@townsquarelabs/ui-vue';
 
 export default {
   setup() {
@@ -159,7 +159,7 @@ Use this hook to access the functions for opening and closing the modal window. 
 </template>
 
 <script>
-import { useTonConnectModal } from '@townsquarexyz/ui-vue';
+import { useTonConnectModal } from '@townsquarelabs/ui-vue';
 
 export default {
   setup() {
@@ -194,7 +194,7 @@ Use it to get access to the `TonConnectUI` instance and UI options updating func
 </template>
 
 <script>
-import { Locales, useTonConnectUI } from '@townsquarexyz/ui-vue';
+import { Locales, useTonConnectUI } from '@townsquarelabs/ui-vue';
 
 export default {
   name: 'Settings',
@@ -244,7 +244,7 @@ You can use it to detect when connection restoring process if finished.
 </template>
 
 <script>
-import { useIsConnectionRestored } from '@townsquarexyz/ui-vue';
+import { useIsConnectionRestored } from '@townsquarelabs/ui-vue';
 
 export default {
   name: 'EntrypointPage',
@@ -264,7 +264,7 @@ This function takes one parameter:
 Set state to 'loading' while you are waiting for the response from your backend. If user opens connect wallet modal at this moment, he will see a loader.
 ```ts
 import { ref } from 'vue';
-import { useTonConnectUI } from '@townsquarexyz/ui-vue';
+import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
 const tonConnectUI = useTonConnectUI();
 
@@ -278,7 +278,7 @@ or
 Set state to 'ready' and define `tonProof` value. Passed parameter will be applied to the connect request (QR and universal link).
 ```ts
 import { ref } from 'vue';
-import { useTonConnectUI } from '@townsquarexyz/ui-vue';
+import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
 const tonConnectUI = useTonConnectUI();
 
@@ -295,7 +295,7 @@ or
 Remove loader if it was enabled via `state: 'loading'` (e.g. you received an error instead of a response from your backend). Connect request will be created without any additional parameters.
 ```ts
 import { ref } from 'vue';
-import { useTonConnectUI } from '@townsquarexyz/ui-vue';
+import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
 const tonConnectUI = useTonConnectUI();
 
@@ -308,7 +308,7 @@ You can call `tonConnectUI.setConnectRequestParameters` multiple times if your t
 
 ```ts
 import { ref } from 'vue';
-import { useTonConnectUI } from '@townsquarexyz/ui-vue';
+import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
 const tonConnectUI = useTonConnectUI();
 
@@ -336,7 +336,7 @@ You can find `ton_proof` result in the `wallet` object when wallet will be conne
 
 ```ts
 import { ref, onMounted } from 'vue';
-import { useTonConnectUI } from '@townsquarexyz/ui-vue';
+import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
 const tonConnectUI = useTonConnectUI();
 
