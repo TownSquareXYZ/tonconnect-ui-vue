@@ -1,57 +1,45 @@
-<template>
-  <div>
-    <slot></slot>
-  </div>
-</template>
-
 <script lang="ts">
-import { provide, ref, onMounted } from 'vue';
-import {
-  TonConnectUI,
-  ActionConfiguration,
-  Locales,
-  UIPreferences,
-  WalletsListConfiguration,
-} from '@tonconnect/ui';
-import type { ITonConnect } from '@tonconnect/ui';
-import { isClientSide } from '../utils/web';
+import { ref, provide, defineComponent, h, isVue2 } from "vue-demi";
+import { TonConnectUI } from "@tonconnect/ui";
+import { isClientSide } from "../utils/web";
+import { TonConnectUIProviderProps } from "../utils/UIProvider";
 
-const TonConnectUIContext = Symbol('TonConnectUIContext');
-
-export default {
-  name: 'TonConnectUIProvider',
+export default defineComponent({
+  name: "TonConnectUIProvider",
   props: {
-    manifestUrl: String,
-    connector: Object,
-    restoreConnection: {
-      type: Boolean,
-      default: true,
-    },
-    language: {
-      type: String,
-      default: 'system',
-    },
-    widgetRootId: {
-      type: String,
-      default: 'div#tc-widget-root',
-    },
-    uiPreferences: Object,
-    walletsListConfiguration: Object,
-    actionsConfiguration: Object,
-    enableAndroidBackHandler: {
-      type: Boolean,
-      default: true,
+    options: {
+      type: Object,
     },
   },
-  setup(props) {
-    const tonConnectUI = ref(null);
+  setup(props: { options: TonConnectUIProviderProps }, { slots }) {
+    console.log("setup");
 
-    onMounted(() => {
-      if (isClientSide() && !tonConnectUI.value) {
-        tonConnectUI.value = new TonConnectUI(props);
+    const tonConnectUI = ref<TonConnectUI | null>(null);
+    if (isClientSide() && !tonConnectUI.value) {
+      tonConnectUI.value = new TonConnectUI(props.options);
+    }
+
+    provide("tonConnectUI", tonConnectUI.value);
+
+    console.log("provide")
+    return () => {
+      if (isVue2) {
+        return h("div", slots?.default as any);
       }
-      provide(TonConnectUIContext, tonConnectUI);
-    });
+      return h(
+        "div",
+        slots.default ? (slots.default as any)() : "nothing"
+      );
+    };
   },
-};
+  render() {
+    if (isVue2) {
+      return h("div", this.$slots.default ? this.$slots.default : "nothing");
+    }
+    return h(
+      "div",
+      this.$slots.default ? (this.$slots.default as any)() : "nothing"
+    );
+  },
+});
 </script>

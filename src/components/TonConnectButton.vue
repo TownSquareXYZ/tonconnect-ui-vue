@@ -1,39 +1,52 @@
-<template>
-  <div
-    :id="buttonRootId"
-    :class="className"
-    :style="{ width: 'fit-content', ...style }"
-  ></div>
-</template>
-
 <script lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
-import { useTonConnectUI } from '../hooks/useTonConnectUI';
+import { defineComponent, h, onBeforeUnmount, onMounted } from "vue-demi";
+import { useTonConnectUI } from "../hooks/useTonConnectUI";
 
-const buttonRootId = 'ton-connect-button';
-
-export default {
-  name: 'TonConnectButton',
+export default defineComponent({
+  name: "TonConnectButton",
   props: {
-    className: String,
-    style: Object,
+    buttonRootId: {
+      type: String,
+      required: false,
+      default: "ton-connect-button",
+    },
+    className: {
+      type: String,
+      required: true,
+    },
+    styles: {
+      type: Object,
+      required: true,
+    },
   },
-  setup(props) {
-    const { setOptions } = useTonConnectUI();
-
+  setup(
+    props: { className: string; styles?: any; buttonRootId?: string },
+    { slots }
+  ) {
+    const [_, setOptions] = useTonConnectUI();
+    console.log("setup", "TonConnectButton");
     onMounted(() => {
-      setOptions({ buttonRootId });
+      setOptions({ buttonRootId: props.buttonRootId });
     });
 
-    onUnmounted(() => {
+    onBeforeUnmount(() => {
       setOptions({ buttonRootId: null });
     });
 
-    return {
-      buttonRootId,
-      className: props.className,
-      style: props.style,
+    return () => {
+      return h(
+        "div",
+        {
+          class: props.className,
+          id: props.buttonRootId || "",
+          attrs: {
+            id: props.buttonRootId || "",
+          },
+          style: { width: "fit-content", ...props.styles },
+        } as any,
+        (slots as any)?.default?.()
+      );
     };
   },
-};
+});
 </script>
