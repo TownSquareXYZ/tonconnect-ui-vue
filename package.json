@@ -1,7 +1,7 @@
 {
   "name": "@townsquarelabs/ui-vue",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -33,7 +33,7 @@
     "townsquarexyz"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/TownSquareXYZ/tonconnect-ui-vue/issues"
   },
