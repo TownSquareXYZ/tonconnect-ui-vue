@@ -1,11 +1,11 @@
 {
-  "name": "@townsquarelabs/ui-vue",
+  "name": "@townsquarelabstest/ui-vue",
   "private": false,
   "version": "1.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npx vue-demi-switch 3 && vite build",
     "build:lib": "yarn build:lib:3 && yarn build:lib:2.7",
     "postinstall": "node ./scripts/postinstall.mjs",
     "build:lib:2.7": "npx vue-demi-switch 2 && yarn build",
@@ -66,13 +66,11 @@
     "@tonconnect/ui": "^2.0.3",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/composition-api": "^1.7.2",
-    "axios": "^0.27.2",
     "rollup": "^4.18.0",
     "rollup-plugin-vue": "^6.0.0",
     "vite-plugin-dts": "^3.9.1",
     "vue": "^2.7.16",
-    "vue-demi": "^0.14.8",
-    "vue-router": "^3.6.5"
+    "vue-demi": "^0.14.8"
   },
   "devDependencies": {
     "@types/node": "^18.19.7",

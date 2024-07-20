@@ -13,8 +13,8 @@ export default defineConfig({
     isVue2
       ? vue2()
       : vue3({
-          compiler: compiler as any,
-        }),
+        compiler: compiler as any,
+      }),
     dts({
       insertTypesEntry: true,
     }),
@@ -24,7 +24,8 @@ export default defineConfig({
   },
   build: {
     target: "es2018",
-    outDir: isVue2 ? "lib/vue2" : "lib/vue3",
+    outDir: "lib",
+    // outDir: isVue2 ? "lib/vue2" : "lib/vue3",
     emptyOutDir: true,
     minify: false,
     sourcemap: false,

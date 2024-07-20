@@ -1,4 +1,4 @@
-import { inject, Ref } from 'vue-demi';
+import { inject } from 'vue-demi';
 import { TonConnectUI, TonConnectUiOptions } from '@tonconnect/ui';
 import { checkProvider } from '../utils/errors';
 import { isServerSide } from '../utils/web';
