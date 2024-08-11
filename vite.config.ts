@@ -24,7 +24,7 @@ export default defineConfig({
   },
   build: {
     target: "es2018",
-    outDir: isVue2 ? "lib/vue2" : "lib/vue3",
+    outDir: 'lib',
     emptyOutDir: true,
     minify: false,
     sourcemap: false,

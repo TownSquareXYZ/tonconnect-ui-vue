@@ -1,11 +1,11 @@
 {
   "name": "@townsquarelabs/ui-vue",
   "private": false,
-  "version": "1.0.2",
+  "version": "2.0.7",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npx vue-demi-switch 3 && vite build",
     "build:lib": "yarn build:lib:3 && yarn build:lib:2.7",
     "postinstall": "node ./scripts/postinstall.mjs",
     "build:lib:2.7": "npx vue-demi-switch 2 && yarn build",
@@ -63,7 +63,7 @@
     }
   },
   "dependencies": {
-    "@tonconnect/ui": "^2.0.3",
+    "@tonconnect/ui": "2.0.7",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/composition-api": "^1.7.2",
     "axios": "^0.27.2",
