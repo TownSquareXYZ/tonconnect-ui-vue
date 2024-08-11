@@ -4,7 +4,8 @@ name: Build and publish
 #   push:
 #     branches: [ "main" ]
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "feature/fix-vue-code" ]
 
 jobs:
   build:
@@ -41,7 +42,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish package
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish
+      # - name: Publish package
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: npm publish
