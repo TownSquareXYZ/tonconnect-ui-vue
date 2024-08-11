@@ -12,15 +12,15 @@ export default defineComponent({
     },
     className: {
       type: String,
-      required: true,
+      required: false,
     },
     styles: {
       type: Object,
-      required: true,
+      required: false,
     },
   },
   setup(
-    props: { className: string; styles?: any; buttonRootId?: string },
+    props: { className?: string; styles?: any; buttonRootId?: string },
     { slots }
   ) {
     const [_, setOptions] = useTonConnectUI();
