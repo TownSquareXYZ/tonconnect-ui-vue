@@ -1,11 +1,8 @@
 name: Build and publish
 
-# on:
-#   push:
-#     branches: [ "main" ]
 on:
   push:
-    branches: [ "feature/fix-vue-code" ]
+    branches: [ "main" ]
 
 jobs:
   build:
