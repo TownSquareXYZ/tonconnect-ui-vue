@@ -22,8 +22,7 @@ You can find more details and the protocol specification in the [docs](https://d
 `yarn add @townsquarelabs/ui-vue`
 
 # Sync with Official Releases
-This [OFFICIAL_SYNC.md](./OFFICIAL_SYNC.md) file describes how we synchronize with the official
-
+This [OFFICIAL_SYNC.md](./OFFICIAL_SYNC.md) file describes how we synchronize with the official.
 
 # Usage
 
