@@ -18,7 +18,7 @@ You can find more details and the protocol specification in the [docs](https://d
 
 ## Installation with npm
 `npm i @townsquarelabs/ui-vue`
-## Installation with npm
+## Installation with yarn
 `yarn add @townsquarelabs/ui-vue`
 
 # Sync with Official Releases
