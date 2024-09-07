@@ -10,17 +10,9 @@ export default defineComponent({
       required: false,
       default: "ton-connect-button",
     },
-    className: {
-      type: String,
-      required: false,
-    },
-    styles: {
-      type: Object,
-      required: false,
-    },
   },
   setup(
-    props: { className?: string; styles?: any; buttonRootId?: string },
+    props: { buttonRootId?: string },
     { slots }
   ) {
     const [_, setOptions] = useTonConnectUI();
@@ -37,12 +29,11 @@ export default defineComponent({
       return h(
         "div",
         {
-          class: props.className,
           id: props.buttonRootId || "",
           attrs: {
             id: props.buttonRootId || "",
           },
-          style: { width: "fit-content", ...props.styles },
+          style: { width: "fit-content" },
         } as any,
         (slots as any)?.default?.()
       );
