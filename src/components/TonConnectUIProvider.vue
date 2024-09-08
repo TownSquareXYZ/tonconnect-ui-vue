@@ -3,6 +3,7 @@ import { provide, defineComponent, h, shallowRef, watch, onMounted, onUnmounted,
 import { TonConnectUI, Wallet } from "@tonconnect/ui";
 import { isClientSide } from "../utils/web";
 import { TonConnectUIProviderProps } from "../utils/UIProvider";
+import { tonConnectUIKey } from "../utils/keys";
 
 export default defineComponent({
   name: "TonConnectUIProvider",
@@ -39,7 +40,7 @@ export default defineComponent({
     );
 
     // Provide the TonConnectUI instance to child components
-    provide("tonConnectUI", tonConnectUI.value);
+    provide(tonConnectUIKey, tonConnectUI.value);
 
     onMounted(() => {
       // Watch for changes in tonConnectUI
