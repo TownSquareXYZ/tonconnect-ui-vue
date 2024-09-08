@@ -1,8 +1,9 @@
 <script lang="ts">
-import { provide, defineComponent, h, isVue2, shallowRef, watch, onMounted, onUnmounted, toRaw, PropType } from "vue-demi";
+import { provide, defineComponent, h, shallowRef, watch, onMounted, onUnmounted, toRaw, PropType } from "vue-demi";
 import { TonConnectUI, Wallet } from "@tonconnect/ui";
 import { isClientSide } from "../utils/web";
 import { TonConnectUIProviderProps } from "../utils/UIProvider";
+import { tonConnectUIKey } from "../utils/keys";
 
 export default defineComponent({
   name: "TonConnectUIProvider",
@@ -39,7 +40,7 @@ export default defineComponent({
     );
 
     // Provide the TonConnectUI instance to child components
-    provide("tonConnectUI", tonConnectUI.value);
+    provide(tonConnectUIKey, tonConnectUI.value);
 
     onMounted(() => {
       // Watch for changes in tonConnectUI
@@ -65,12 +66,9 @@ export default defineComponent({
     });
 
     return () => {
-      if (isVue2) {
-        return h("div", slots?.default as any);
-      }
       return h(
         "div",
-        slots.default ? (slots.default as any)() : "nothing"
+        slots.default?.() ?? null
       );
     };
   }

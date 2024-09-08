@@ -2,9 +2,10 @@ import { inject } from 'vue-demi';
 import { TonConnectUI, TonConnectUiOptions } from '@tonconnect/ui';
 import { checkProvider } from '../utils/errors';
 import { isServerSide } from '../utils/web';
+import { tonConnectUIKey } from '../utils/keys';
 
 export function useTonConnectUI(): [TonConnectUI, (options: TonConnectUiOptions) => void] {
-    const tonConnectUI = inject('tonConnectUI') as TonConnectUI | null;
+    const tonConnectUI = inject(tonConnectUIKey) as TonConnectUI | null;
 
     const setOptions = (options) => {
         if (tonConnectUI) {
