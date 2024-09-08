@@ -1,5 +1,5 @@
 <script lang="ts">
-import { provide, defineComponent, h, isVue2, shallowRef, watch, onMounted, onUnmounted, toRaw, PropType } from "vue-demi";
+import { provide, defineComponent, h, shallowRef, watch, onMounted, onUnmounted, toRaw, PropType } from "vue-demi";
 import { TonConnectUI, Wallet } from "@tonconnect/ui";
 import { isClientSide } from "../utils/web";
 import { TonConnectUIProviderProps } from "../utils/UIProvider";
@@ -65,12 +65,9 @@ export default defineComponent({
     });
 
     return () => {
-      if (isVue2) {
-        return h("div", slots?.default as any);
-      }
       return h(
         "div",
-        slots.default ? (slots.default as any)() : "nothing"
+        slots.default?.() ?? null
       );
     };
   }
