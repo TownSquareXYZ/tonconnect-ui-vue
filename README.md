@@ -190,7 +190,6 @@ Use it to get access to the `TonConnectUI` instance and UI options updating func
       <select @change="onLanguageChange($event.target.value)">
         <option value="en">en</option>
         <option value="ru">ru</option>
-        <option value="zh">zh</option>
       </select>
     </div>
   </div>
@@ -202,7 +201,7 @@ import { Locales, useTonConnectUI } from '@townsquarelabs/ui-vue';
 export default {
   name: 'Settings',
   setup() {
-    const [tonConnectUI, setOptions] = useTonConnectUI();
+    const {tonConnectUI, setOptions} = useTonConnectUI();
 
     const onLanguageChange = (lang) => {
       setOptions({ language: lang as Locales });
@@ -231,6 +230,15 @@ export default {
     return { onLanguageChange, sendTransaction };
   }
 };
+</script>
+```
+
+or
+
+```vue
+<script  lang="ts">
+import { TonConnectUI, useTonWallet, tonConnectUIKey } from "@townsquarexyz/ui-vue";
+const tonConnectUI = inject<TonConnectUI | null>(tonConnectUIKey, null);
 </script>
 ```
 
@@ -269,7 +277,7 @@ Set state to 'loading' while you are waiting for the response from your backend.
 import { ref } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const {tonConnectUI} = useTonConnectUI();
 
 tonConnectUI.setConnectRequestParameters({
     state: 'loading'
@@ -283,7 +291,7 @@ Set state to 'ready' and define `tonProof` value. Passed parameter will be appli
 import { ref } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const {tonConnectUI} = useTonConnectUI();
 
 tonConnectUI.setConnectRequestParameters({
     state: 'ready',
@@ -300,7 +308,7 @@ Remove loader if it was enabled via `state: 'loading'` (e.g. you received an err
 import { ref } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const {tonConnectUI} = useTonConnectUI();
 
 tonConnectUI.setConnectRequestParameters(null);
 ```

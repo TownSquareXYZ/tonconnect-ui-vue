@@ -1,4 +1,4 @@
-import { inject, reactive, ref } from 'vue-demi'; // 使用 vue-demi 支持 Vue 2 和 Vue 3
+import { inject, reactive} from 'vue-demi';
 import { TonConnectUI, TonConnectUiOptions } from '@tonconnect/ui';
 import { checkProvider } from '../utils/errors';
 import { isServerSide } from '../utils/web';
