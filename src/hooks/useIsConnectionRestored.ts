@@ -3,7 +3,7 @@ import { useTonConnectUI } from './useTonConnectUI';
 
 export function useIsConnectionRestored() {
     const restored = ref(false);
-    const [tonConnectUI] = useTonConnectUI();
+    const { tonConnectUI } = useTonConnectUI();
 
     onMounted(() => {
         if (tonConnectUI) {

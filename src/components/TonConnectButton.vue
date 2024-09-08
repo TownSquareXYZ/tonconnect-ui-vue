@@ -15,7 +15,7 @@ export default defineComponent({
     props: { buttonRootId?: string },
     { slots }
   ) {
-    const [_, setOptions] = useTonConnectUI();
+    const {setOptions} = useTonConnectUI();
     console.log("setup", "TonConnectButton");
     onMounted(() => {
       setOptions({ buttonRootId: props.buttonRootId });

@@ -82,8 +82,8 @@ export default {
 </script>
 ```
 
-You can add `class` and `:style` props to the button as well. Note that you cannot pass child to the TonConnectButton. 
-`<TonConnectButton class="my-button-class" :style="{ float: 'right' }"/>`
+You can add `buttonRootId` props to the button as well.
+`<TonConnectButton :button-root-id="`ton-connect-button`" />`
 
 
 ## Use TonConnect UI hooks
@@ -313,7 +313,7 @@ You can call `tonConnectUI.setConnectRequestParameters` multiple times if your t
 import { ref } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const { tonConnectUI } = useTonConnectUI();
 
 // enable ui loader
 tonConnectUI.setConnectRequestParameters({ state: 'loading' });
@@ -341,7 +341,7 @@ You can find `ton_proof` result in the `wallet` object when wallet will be conne
 import { ref, onMounted } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const { tonConnectUI } = useTonConnectUI();
 
 onMounted(() =>
     tonConnectUI.onStatusChange(wallet => {

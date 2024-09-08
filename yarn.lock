@@ -1465,22 +1465,23 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tonconnect/sdk@3.0.4":
-  version "3.0.4"
-  resolved "https://registry.npmmirror.com/@tonconnect/sdk/-/sdk-3.0.4.tgz#93ec09b454a9514361271d140a4e1c2e1ae02eee"
-  integrity sha512-+87DHYhs2goR0j9rLNavrtvMQNFX5BB5csoY6qAt524hTaNjSRkgogAK2HsiZnZArMb4xzsbVySxGCdpeH4Y3A==
+"@tonconnect/sdk@3.0.5":
+  version "3.0.5"
+  resolved "https://registry.npmmirror.com/@tonconnect/sdk/-/sdk-3.0.5.tgz#08a202bdc8ea897c37221fd69925c35cd2106323"
+  integrity sha512-ow0qnN4s3iQ/r2uXobZ7YzdQBtan/36CgCT9IP35G07g38UxsUXwzw8ANmJTDj/JPiQcIKuYBMfIwIX9zLM0wg==
   dependencies:
     "@tonconnect/isomorphic-eventsource" "^0.0.2"
     "@tonconnect/isomorphic-fetch" "^0.0.3"
     "@tonconnect/protocol" "^2.2.6"
 
-"@tonconnect/ui@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.npmmirror.com/@tonconnect/ui/-/ui-2.0.7.tgz#0a1c590f2a1d85e695255b1f658a470382609afe"
-  integrity sha512-u0YmciMF462gNlm/DFHVMVXtrX3n563VIDQ92hmCzQT4XU92xpr1E1dfbtOVOHf9t9DcDqLkhjRt3w/nuTuy3Q==
+"@tonconnect/ui@2.0.10-beta.0":
+  version "2.0.10-beta.0"
+  resolved "https://registry.npmmirror.com/@tonconnect/ui/-/ui-2.0.10-beta.0.tgz#5f1586795db5bf9f7a286d3b2fb92910b5510dea"
+  integrity sha512-epD/ATgwQ3inCY2adVEIgwCtOuM6F2CPhXbrRl1hQggnCGsbqYAz6gSD4sxkV0BInPpo/utSwlExpNpHMB1GLA==
   dependencies:
-    "@tonconnect/sdk" "3.0.4"
+    "@tonconnect/sdk" "3.0.5"
     classnames "^2.3.2"
+    csstype "^3.1.1"
     deepmerge "^4.2.2"
     ua-parser-js "^1.0.35"
 
@@ -2229,7 +2230,7 @@ cssesc@^3.0.0:
   resolved "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
-csstype@^3.1.0:
+csstype@^3.1.0, csstype@^3.1.1:
   version "3.1.3"
   resolved "https://registry.npmmirror.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==

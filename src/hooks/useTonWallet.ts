@@ -3,7 +3,7 @@ import { ConnectedWallet, Wallet, WalletInfoWithOpenMethod } from '@tonconnect/u
 import { useTonConnectUI } from './useTonConnectUI';
 
 export function useTonWallet() {
-    const [tonConnectUI] = useTonConnectUI();
+    const { tonConnectUI } = useTonConnectUI();
     const wallet = ref<Wallet | (Wallet & WalletInfoWithOpenMethod) | null>(
         tonConnectUI?.wallet || null
     );
