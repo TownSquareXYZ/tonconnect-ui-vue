@@ -7,7 +7,6 @@ export default defineComponent({
   props: {
     buttonRootId: {
       type: String,
-      required: false,
       default: "ton-connect-button",
     },
   },
@@ -30,9 +29,6 @@ export default defineComponent({
         "div",
         {
           id: props.buttonRootId || "",
-          attrs: {
-            id: props.buttonRootId || "",
-          },
           style: { width: "fit-content" },
         } as any,
         (slots as any)?.default?.()
