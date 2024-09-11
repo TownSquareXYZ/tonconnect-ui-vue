@@ -1,8 +1,5 @@
-import dts from "rollup-plugin-dts";
-// import vue from 'rollup-plugin-vue';
 import vue from '@vitejs/plugin-vue2'
-import ts from 'typescript';
-import * as fs from 'fs';
+import typescript from '@rollup/plugin-typescript';
 
 const config = [
     {
@@ -10,12 +7,13 @@ const config = [
         output: [{ file: "lib/index.d.ts", format: "es" }],
         plugins: [
             vue(),
-            dts({
-                compilerOptions: {
-                    baseUrl: './',
-                    paths: ts.readConfigFile('./tsconfig.json', p => fs.readFileSync(p, 'utf8')).config.compilerOptions.paths,
-                },
-            }),],
+            typescript({
+                tsconfig: path.resolve(__dirname, 'tsconfig.json'),
+                // Ensure declaration files are generated
+                declaration: true,
+                declarationMap: true,
+              }),
+            ],
     },
 ];
 
