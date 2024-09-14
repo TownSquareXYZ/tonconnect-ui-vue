@@ -29,7 +29,10 @@ export default defineComponent({
         "div",
         {
           id: props.buttonRootId || "",
-          style: { width: "fit-content" },
+          attrs: {
+            id: props.buttonRootId || "",
+          },
+          style: { width: "fit-content"},
         } as any,
         (slots as any)?.default?.()
       );
