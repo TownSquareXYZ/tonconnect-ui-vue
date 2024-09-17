@@ -42,12 +42,12 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: ["vue", "vue-router", "@tonconnect/ui"],
+      external: ["vue", "@tonconnect/ui", "vue-demi"],
       output: {
         globals: {
           vue: "Vue",
-          "vue-router": "VueRouter",
           "@tonconnect/ui": "TON_CONNECT_UI",
+          "vue-demi": "VueDemi",
         },
       },
     },
