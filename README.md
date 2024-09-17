@@ -9,6 +9,12 @@ If you want to use TonConnect on the server side, you should use the [TonConnect
 You can find more details and the protocol specification in the [docs](https://docs.ton.org/develop/dapps/ton-connect/overview).
 
 ---
+## Features
+-  **TonConnect UI Integration**: Vue components and hooks for TON wallet connections.
+-  **Cross-version Compatibility**: Fully supports **Vue 2.7+** and **Vue 3** through `vue-demi`.
+-  **TypeScript Support**: Complete type definitions for enhanced development experience.
+- **Flexible Configuration**: Extensive options for customizing behavior and appearance.
+---
 
 # Getting started
 
