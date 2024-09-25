@@ -3,7 +3,7 @@ import { provide, defineComponent, h, shallowRef, watch, onMounted, onUnmounted,
 import { TonConnectUI, Wallet } from "@tonconnect/ui";
 import { isClientSide } from "../utils/web";
 import { TonConnectUIProviderProps } from "../utils/UIProvider";
-import { tonConnectUIKey } from "../utils/keys";
+import { tonConnectUIKey } from "../injection-keys";
 
 export default defineComponent({
   name: "TonConnectUIProvider",
@@ -13,57 +13,23 @@ export default defineComponent({
     },
   },
   setup(props: { options: TonConnectUIProviderProps | null },{slots}) {
-    // Create a shallow reactive reference for TonConnectUI instance
-    const tonConnectUI = shallowRef<TonConnectUI | null>(null);
-    // Create reactive references for wallet and unsubscribe function
-    const wallet = shallowRef<Wallet | null>(null);
-    const unsubscribe = shallowRef(() => {});
+    let tonConnectUI: TonConnectUI | null = null;
     
-    if (isClientSide() && !tonConnectUI.value) {
-        unsubscribe.value();
-        tonConnectUI.value = new TonConnectUI(toRaw(props.options) || {});
+    if (isClientSide() && !tonConnectUI) {
+      tonConnectUI = new TonConnectUI(props.options || {});
     }
+    
+    provide(tonConnectUIKey, tonConnectUI);
 
-    // Watch for changes in options
     watch(
       () => props.options,
       () => {
-        if (isClientSide() && tonConnectUI.value && props.options) {
-          // create new instance, but will cause warning
-          // tonConnectUI.value = new TonConnectUI(toRaw(props.options) || {});
-
-          // update options
-          tonConnectUI.value.uiOptions = toRaw(props.options);
+        if (isClientSide() && tonConnectUI && props.options) {
+          tonConnectUI.uiOptions = toRaw(props.options);
         }
       },
       { deep: true }
     );
-
-    // Provide the TonConnectUI instance to child components
-    provide(tonConnectUIKey, tonConnectUI.value);
-
-    onMounted(() => {
-      // Watch for changes in tonConnectUI
-      watch(tonConnectUI, (actualTonConnectUI) => {
-        if (actualTonConnectUI) {
-          // Unsubscribe from previous subscription
-          unsubscribe.value();
-
-          // Update wallet value
-          wallet.value = actualTonConnectUI.wallet;
-
-          // Subscribe to status changes
-          unsubscribe.value = actualTonConnectUI.onStatusChange((value) => {
-            wallet.value = value;
-          });
-        }
-      }, { immediate: true });
-    });
-
-    // Clean up subscription on component unmount
-    onUnmounted(() => {
-      unsubscribe.value();
-    });
 
     return () => {
       return h(

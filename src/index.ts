@@ -1,4 +1,4 @@
 export * from '@tonconnect/ui';
 export * from './library';
-export * from './utils/keys';
-export * from './utils';
+export * from './injection-keys';
+export * from './types';
