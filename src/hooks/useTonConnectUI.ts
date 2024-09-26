@@ -1,11 +1,15 @@
-import { inject} from 'vue-demi';
+import { getCurrentInstance, isVue2 } from 'vue-demi';
 import { TonConnectUI, TonConnectUiOptions } from '@tonconnect/ui';
 import { checkProvider } from '../utils/errors';
 import { isServerSide } from '../utils/web';
-import { tonConnectUIKey } from '../injection-keys';
 
 export function useTonConnectUI() {
-    const tonConnectUI = inject(tonConnectUIKey, null);
+    const globalPropertiesMap = isVue2
+        ? getCurrentInstance()?.proxy
+        // @ts-expect-error
+        : getCurrentInstance().appContext.app.config.globalProperties;
+
+    const tonConnectUI = globalPropertiesMap.$tonConnectUI;
 
     if (isServerSide()) {
         return {
