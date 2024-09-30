@@ -32,37 +32,40 @@ This [OFFICIAL_SYNC.md](./OFFICIAL_SYNC.md) file describes how we synchronize wi
 
 # Usage
 
-## Add TonConnectUIProvider
-Add TonConnectUIProvider to the root of the app. You can specify UI options using props.
+
+## Use TonConnectUIPlugin
+
+Use TonConnectUIPlugin before mounting the app. You can specify UI options using plugin options.
 // todo
 <!-- [See all available options](https://ton-connect.github.io/sdk/types/_tonconnect_ui_react.TonConnectUIProviderProps.html) -->
 
-All TonConnect UI hooks calls and `<TonConnectButton />` component must be placed inside `<TonConnectUIProvider>`.
+For Vue@2.7:
+```ts
+import Vue from 'vue'
+import { TonConnectUIPlugin } from '@townsquarelabs/ui-vue'
 
-```vue
-<template>
-  <TonConnectUIProvider :options="options">
-    <!-- Your app -->
-  </TonConnectUIProvider>
-</template>
+import App from './App.vue'
 
-<script>
-import { TonConnectUIProvider } from '@townsquarelabs/ui-vue';
+Vue.use(TonConnectUIPlugin, {
+  manifestUrl: "https://<YOUR_APP_URL>/tonconnect-manifest.json"
+});
 
-export default {
-  components: {
-    TonConnectUIProvider
-  },
-  setup(){
-    const options = {
-      manifestUrl:"https://<YOUR_APP_URL>/tonconnect-manifest.json",
-    };
-    return {
-      options
-    }
-  }
-}
-</script>
+new Vue({
+  render: (h) => h(App)
+}).$mount('#app')
+```
+
+For Vue@3:
+```ts
+import { createApp } from 'vue'
+import { TonConnectUIPlugin } from '@townsquarelabs/ui-vue'
+
+import App from './App.vue'
+
+const app = createApp(App)
+app
+  .use(TonConnectUIPlugin,{ manifestUrl: "https://<YOUR_APP_URL>/tonconnect-manifest.json" })
+  .mount('#app')
 ```
 
 ## Add TonConnect Button
