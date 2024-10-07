@@ -92,7 +92,7 @@ export default {
 ```
 
 You can add `buttonRootId` props to the button as well.
-`<TonConnectButton :button-root-id="`ton-connect-button`" />`
+`<TonConnectButton button-root-id="button-root-id" />`
 
 
 ## Use TonConnect UI hooks
