@@ -9,6 +9,12 @@ If you want to use TonConnect on the server side, you should use the [TonConnect
 You can find more details and the protocol specification in the [docs](https://docs.ton.org/develop/dapps/ton-connect/overview).
 
 ---
+## Features
+-  **TonConnect UI Integration**: Vue components and hooks for TON wallet connections.
+-  **Cross-version Compatibility**: Fully supports **Vue 2.7+** and **Vue 3** through `vue-demi`.
+-  **TypeScript Support**: Complete type definitions for enhanced development experience.
+- **Flexible Configuration**: Extensive options for customizing behavior and appearance.
+---
 
 # Getting started
 
@@ -26,37 +32,40 @@ This [OFFICIAL_SYNC.md](./OFFICIAL_SYNC.md) file describes how we synchronize wi
 
 # Usage
 
-## Add TonConnectUIProvider
-Add TonConnectUIProvider to the root of the app. You can specify UI options using props.
+
+## Use TonConnectUIPlugin
+
+Use TonConnectUIPlugin before mounting the app. You can specify UI options using plugin options.
 // todo
 <!-- [See all available options](https://ton-connect.github.io/sdk/types/_tonconnect_ui_react.TonConnectUIProviderProps.html) -->
 
-All TonConnect UI hooks calls and `<TonConnectButton />` component must be placed inside `<TonConnectUIProvider>`.
+For Vue@2.7:
+```ts
+import Vue from 'vue'
+import { TonConnectUIPlugin } from '@townsquarelabs/ui-vue'
 
-```vue
-<template>
-  <TonConnectUIProvider :options="options">
-    <!-- Your app -->
-  </TonConnectUIProvider>
-</template>
+import App from './App.vue'
 
-<script>
-import { TonConnectUIProvider } from '@townsquarelabs/ui-vue';
+Vue.use(TonConnectUIPlugin, {
+  manifestUrl: "https://<YOUR_APP_URL>/tonconnect-manifest.json"
+});
 
-export default {
-  components: {
-    TonConnectUIProvider
-  },
-  setup(){
-    const options = {
-      manifestUrl:"https://<YOUR_APP_URL>/tonconnect-manifest.json",
-    };
-    return {
-      options
-    }
-  }
-}
-</script>
+new Vue({
+  render: (h) => h(App)
+}).$mount('#app')
+```
+
+For Vue@3:
+```ts
+import { createApp } from 'vue'
+import { TonConnectUIPlugin } from '@townsquarelabs/ui-vue'
+
+import App from './App.vue'
+
+const app = createApp(App)
+app
+  .use(TonConnectUIPlugin,{ manifestUrl: "https://<YOUR_APP_URL>/tonconnect-manifest.json" })
+  .mount('#app')
 ```
 
 ## Add TonConnect Button
@@ -82,8 +91,8 @@ export default {
 </script>
 ```
 
-You can add `class` and `:style` props to the button as well. Note that you cannot pass child to the TonConnectButton. 
-`<TonConnectButton class="my-button-class" :style="{ float: 'right' }"/>`
+You can add `buttonRootId` props to the button as well.
+`<TonConnectButton button-root-id="button-root-id" />`
 
 
 ## Use TonConnect UI hooks
@@ -190,7 +199,6 @@ Use it to get access to the `TonConnectUI` instance and UI options updating func
       <select @change="onLanguageChange($event.target.value)">
         <option value="en">en</option>
         <option value="ru">ru</option>
-        <option value="zh">zh</option>
       </select>
     </div>
   </div>
@@ -202,7 +210,7 @@ import { Locales, useTonConnectUI } from '@townsquarelabs/ui-vue';
 export default {
   name: 'Settings',
   setup() {
-    const [tonConnectUI, setOptions] = useTonConnectUI();
+    const {tonConnectUI, setOptions} = useTonConnectUI();
 
     const onLanguageChange = (lang) => {
       setOptions({ language: lang as Locales });
@@ -231,6 +239,15 @@ export default {
     return { onLanguageChange, sendTransaction };
   }
 };
+</script>
+```
+
+or
+
+```vue
+<script  lang="ts">
+import { TonConnectUI, useTonWallet, tonConnectUIKey } from "@townsquarexyz/ui-vue";
+const tonConnectUI = inject<TonConnectUI | null>(tonConnectUIKey, null);
 </script>
 ```
 
@@ -269,7 +286,7 @@ Set state to 'loading' while you are waiting for the response from your backend.
 import { ref } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const {tonConnectUI} = useTonConnectUI();
 
 tonConnectUI.setConnectRequestParameters({
     state: 'loading'
@@ -283,7 +300,7 @@ Set state to 'ready' and define `tonProof` value. Passed parameter will be appli
 import { ref } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const {tonConnectUI} = useTonConnectUI();
 
 tonConnectUI.setConnectRequestParameters({
     state: 'ready',
@@ -300,7 +317,7 @@ Remove loader if it was enabled via `state: 'loading'` (e.g. you received an err
 import { ref } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const {tonConnectUI} = useTonConnectUI();
 
 tonConnectUI.setConnectRequestParameters(null);
 ```
@@ -313,7 +330,7 @@ You can call `tonConnectUI.setConnectRequestParameters` multiple times if your t
 import { ref } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const { tonConnectUI } = useTonConnectUI();
 
 // enable ui loader
 tonConnectUI.setConnectRequestParameters({ state: 'loading' });
@@ -341,7 +358,7 @@ You can find `ton_proof` result in the `wallet` object when wallet will be conne
 import { ref, onMounted } from 'vue';
 import { useTonConnectUI } from '@townsquarelabs/ui-vue';
 
-const tonConnectUI = useTonConnectUI();
+const { tonConnectUI } = useTonConnectUI();
 
 onMounted(() =>
     tonConnectUI.onStatusChange(wallet => {

@@ -1,21 +1,33 @@
-import { inject } from 'vue-demi';
+import { getCurrentInstance, isVue2 } from 'vue-demi';
 import { TonConnectUI, TonConnectUiOptions } from '@tonconnect/ui';
 import { checkProvider } from '../utils/errors';
 import { isServerSide } from '../utils/web';
 
-export function useTonConnectUI(): [TonConnectUI, (options: TonConnectUiOptions) => void] {
-    const tonConnectUI = inject('tonConnectUI') as TonConnectUI | null;
+export function useTonConnectUI() {
+    if (isServerSide()) {
+        return {
+            tonConnectUI: null as unknown as TonConnectUI,
+            setOptions: () => {},
+        };
+    }
 
-    const setOptions = (options) => {
-        if (tonConnectUI) {
+    const globalPropertiesMap = isVue2
+        ? getCurrentInstance()?.proxy
+        // @ts-expect-error
+        : getCurrentInstance().appContext.app.config.globalProperties;
+
+    const tonConnectUI = globalPropertiesMap.$tonConnectUI;
+
+    const setOptions = (options: TonConnectUiOptions) => {
+        if (tonConnectUI && tonConnectUI) {
             tonConnectUI.uiOptions = options;
         }
     };
 
-    if (isServerSide()) {
-        return [null as unknown as TonConnectUI, () => { }];
-    }
-
     checkProvider(tonConnectUI);
-    return [tonConnectUI!, setOptions];
+
+    return {
+        tonConnectUI,
+        setOptions,
+    };
 }

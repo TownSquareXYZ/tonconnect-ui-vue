@@ -3,7 +3,7 @@ import { useTonConnectUI } from './useTonConnectUI';
 import { WalletsModalState } from '@tonconnect/ui';
 
 export function useTonConnectModal() {
-    const [tonConnectUI] = useTonConnectUI();
+    const { tonConnectUI } = useTonConnectUI();
     const state = ref<WalletsModalState | null>(tonConnectUI?.modal.state || null);
 
     onMounted(() => {

@@ -1,36 +1,40 @@
 {
   "name": "@townsquarelabs/ui-vue",
   "private": false,
-  "version": "2.0.10-beta.0",
+  "version": "2.0.11-beta.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "npx vue-demi-switch 3 && vite build",
     "build:lib": "yarn build:lib:3 && yarn build:lib:2.7",
-    "postinstall": "node ./scripts/postinstall.mjs",
-    "build:lib:2.7": "npx vue-demi-switch 2 && yarn build",
-    "build:lib:3": "npx vue-demi-switch 3 && yarn build",
+    "build:lib:2.7": "npx vue-demi-switch 2 && vite build",
+    "build:lib:3": "npx vue-demi-switch 3 && vite build",
     "preview": "vite preview",
     "lint-fix": "eslint --fix --ext .ts,.vue src",
     "lint": "eslint",
     "prepare": "husky",
-    "link": "yarn link"
+    "security-audit": "npm audit && npm outdated"
   },
   "publishConfig": {
     "access": "public"
   },
   "description": "TonConnect UI Vue is a Vue UI kit for TonConnect SDK. Use it to connect your app to TON wallets via TonConnect protocol in Vue apps.",
-  "directories": {
-    "example": "example",
-    "lib": "lib"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TownSquareXYZ/tonconnect-ui-vue.git"
   },
   "keywords": [
     "ton",
-    "townsquarexyz"
+    "townsquarexyz",
+    "TON",
+    "Wallet",
+    "ton-connect",
+    "tonconnect",
+    "Connect",
+    "Tonkeeper",
+    "sdk",
+    "UI",
+    "Vue"
   ],
   "author": "",
   "license": "Apache-2.0",
@@ -55,32 +59,21 @@
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
-    "vue": "^2.7.0 || >=3.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
-    }
+    "vue": "^2.7.0 || >=3.0.0",
+    "vue-demi": "^0.14.8"
   },
   "dependencies": {
-    "@tonconnect/ui": "2.0.10-beta.0",
-    "@vitejs/plugin-vue": "^5.0.5",
-    "@vue/composition-api": "^1.7.2",
-    "axios": "^0.27.2",
-    "rollup": "^4.18.0",
-    "rollup-plugin-vue": "^6.0.0",
-    "vite-plugin-dts": "^3.9.1",
-    "vue": "^2.7.16",
-    "vue-demi": "^0.14.8",
-    "vue-router": "^3.6.5"
+    "@tonconnect/ui": "2.0.10-beta.0"
   },
   "devDependencies": {
     "@types/node": "^18.19.7",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-legacy": "^5.2.0",
+    "@vitejs/plugin-vue": "^5.0.5",
     "@vitejs/plugin-vue2": "^2.3.1",
     "@vue-macros/volar": "^0.18.16",
+    "@vue/composition-api": "^1.7.2",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^8.10.0",
@@ -88,17 +81,14 @@
     "eslint-plugin-vue": "^9.20.1",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "mockjs": "^1.1.0",
-    "postcss": "^8.4.33",
-    "prettier": "^2.8.8",
-    "rollup-plugin-dts": "^6.1.1",
-    "sass": "^1.69.7",
-    "terser": "^5.26.0",
     "typescript": "^4.9.5",
-    "unplugin-vue-components": "^0.22.12",
-    "unplugin-vue-define-options": "^1.4.2",
+    "unplugin-vue-components": "^0.27.4",
+    "unplugin-vue-define-options": "^1.5.1",
     "vite": "^5.0.11",
-    "vite-plugin-mock": "^2.9.8",
+    "vite-plugin-dts": "^4.2.1",
+    "vitest": "latest",
+    "vue": "^2.7.16",
+    "vue-demi": "^0.14.10",
     "vue-eslint-parser": "^9.4.0",
     "vue-tsc": "^0.39.5"
   },

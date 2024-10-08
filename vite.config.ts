@@ -3,10 +3,8 @@ import vue2 from "@vitejs/plugin-vue2";
 import vue3 from "@vitejs/plugin-vue";
 import path from "path";
 import dts from "vite-plugin-dts";
-import { isVue2, isVue3 } from "vue-demi";
+import { isVue2 } from "vue-demi";
 import * as compiler from "@vue/compiler-sfc";
-
-console.log({ isVue2, isVue3 });
 
 export default defineConfig({
   plugins: [
@@ -44,12 +42,12 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: ["vue", "vue-router", "@tonconnect/ui"],
+      external: ["vue", "@tonconnect/ui", "vue-demi"],
       output: {
         globals: {
           vue: "Vue",
-          "vue-router": "VueRouter",
           "@tonconnect/ui": "TON_CONNECT_UI",
+          "vue-demi": "VueDemi",
         },
       },
     },
