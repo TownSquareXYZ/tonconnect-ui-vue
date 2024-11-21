@@ -5,9 +5,9 @@ import { TonConnectUIVueError } from './ton-connect-ui-vue.error';
  * either there is an attempt using TonConnect UI hook or <TonConnectButton> inside <TonConnectProvider>
  */
 export class TonConnectProviderNotSetError extends TonConnectUIVueError {
-    constructor(...args: ConstructorParameters<typeof Error>) {
-        super(...args);
+  constructor(...args: ConstructorParameters<typeof Error>) {
+    super(...args);
 
-        Object.setPrototypeOf(this, TonConnectProviderNotSetError.prototype);
-    }
+    Object.setPrototypeOf(this, TonConnectProviderNotSetError.prototype);
+  }
 }

@@ -1,11 +1,7 @@
-import {
-  isVue2,
-  shallowRef,
-  PluginObject,
-} from "vue-demi";
-import { TonConnectUI } from "@tonconnect/ui";
-import { isClientSide } from "./utils/web";
-import { TonConnectUIProviderProps } from "./types";
+import { isVue2, shallowRef, PluginObject } from 'vue-demi';
+import { TonConnectUI } from '@tonconnect/ui';
+import { isClientSide } from './utils/web';
+import { TonConnectUIProviderProps } from './types';
 
 export const TonConnectUIPlugin: PluginObject<TonConnectUIProviderProps> = {
   install(app, options) {
@@ -19,7 +15,7 @@ export const TonConnectUIPlugin: PluginObject<TonConnectUIProviderProps> = {
     if (isVue2) {
       app.prototype.$tonConnectUI = tonConnectUI.value;
     } else {
-      // @ts-expect-error
+      // @ts-expect-error: TypeScript does not recognize the globalProperties property in Vue 3
       app.config.globalProperties.$tonConnectUI = tonConnectUI.value;
     }
   },

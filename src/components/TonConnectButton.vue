@@ -1,20 +1,25 @@
 <script lang="ts">
-import { defineComponent, h, onBeforeUnmount, onMounted } from "vue-demi";
-import { useTonConnectUI } from "../hooks/useTonConnectUI";
+import {
+  defineComponent,
+  h,
+  onBeforeUnmount,
+  onMounted,
+  isVue2,
+  PropType,
+} from 'vue-demi';
+import { useTonConnectUI } from '../hooks/useTonConnectUI';
 
 export default defineComponent({
-  name: "TonConnectButton",
+  name: 'TonConnectButton',
   props: {
     buttonRootId: {
-      type: String,
-      default: "ton-connect-button",
+      type: String as PropType<string>,
+      default: 'ton-connect-button',
     },
   },
-  setup(
-    props: { buttonRootId?: string },
-    { slots }
-  ) {
-    const {setOptions} = useTonConnectUI();
+  setup(props, { slots }) {
+    const { setOptions } = useTonConnectUI();
+
     onMounted(() => {
       setOptions({ buttonRootId: props.buttonRootId });
     });
@@ -24,17 +29,14 @@ export default defineComponent({
     });
 
     return () => {
-      return h(
-        "div",
-        {
-          id: props.buttonRootId || "",
-          attrs: {
-            id: props.buttonRootId || "",
-          },
-          style: { width: "fit-content"},
-        } as any,
-        (slots as any)?.default?.()
-      );
+      const vnodeData = {
+        style: { width: 'fit-content' },
+        ...(isVue2
+          ? { attrs: { id: props.buttonRootId || '' } }
+          : { id: props.buttonRootId || '' }),
+      };
+
+      return h('div', vnodeData, slots.default ? slots.default() : null);
     };
   },
 });

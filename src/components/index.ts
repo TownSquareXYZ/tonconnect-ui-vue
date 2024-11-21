@@ -1,1 +1,1 @@
-export { default as TonConnectButton } from "./TonConnectButton.vue";
+export { default as TonConnectButton } from './TonConnectButton.vue';

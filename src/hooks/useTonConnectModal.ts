@@ -1,23 +1,30 @@
-import { ref, onMounted } from 'vue-demi';
+import { ref, onMounted, Ref } from 'vue-demi';
 import { useTonConnectUI } from './useTonConnectUI';
 import { WalletsModalState } from '@tonconnect/ui';
 
-export function useTonConnectModal() {
-    const { tonConnectUI } = useTonConnectUI();
-    const state = ref<WalletsModalState | null>(tonConnectUI?.modal.state || null);
+export function useTonConnectModal(): {
+  state: Ref<WalletsModalState | null>;
+  open: () => void;
+  close: () => void;
+} {
+  const { tonConnectUI } = useTonConnectUI();
+  const state = ref<WalletsModalState | null>(
+    tonConnectUI?.modal.state || null,
+  );
 
-    onMounted(() => {
-        if (tonConnectUI) {
-            state.value = tonConnectUI.modal.state;
-            tonConnectUI.onModalStateChange((value: WalletsModalState) => {
-                state.value = value;
-            });
-        }
-    });
+  onMounted(() => {
+    if (tonConnectUI) {
+      state.value = tonConnectUI.modal.state;
 
-    return {
-        state: state,
-        open: () => tonConnectUI?.modal.open(),
-        close: () => tonConnectUI?.modal.close()
-    };
+      tonConnectUI.onModalStateChange((value: WalletsModalState) => {
+        state.value = value;
+      });
+    }
+  });
+
+  return {
+    state: state,
+    open: () => tonConnectUI?.modal.open(),
+    close: () => tonConnectUI?.modal.close(),
+  };
 }
