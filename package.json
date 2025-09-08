@@ -64,7 +64,7 @@
     "vue-demi": "^0.14.8"
   },
   "dependencies": {
-    "@tonconnect/ui": "2.0.10-beta.0"
+    "@tonconnect/ui": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "^18.19.7",
