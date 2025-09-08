@@ -1231,29 +1231,29 @@
   dependencies:
     node-fetch "^2.6.9"
 
-"@tonconnect/protocol@^2.2.6":
-  version "2.2.6"
-  resolved "https://registry.npmmirror.com/@tonconnect/protocol/-/protocol-2.2.6.tgz#24b3fbcde6003e65fb5840a190072db5378699db"
-  integrity sha512-kyoDz5EqgsycYP+A+JbVsAUYHNT059BCrK+m0pqxykMODwpziuSAXfwAZmHcg8v7NB9VKYbdFY55xKeXOuEd0w==
+"@tonconnect/protocol@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@tonconnect/protocol/-/protocol-2.3.0.tgz#3b1ab9a56185ad676f52889a5fb44a611cf7a059"
+  integrity sha512-OxrmcXF/EsSdGeASP9VpTRojuMtTV87DKYFLRq4ZJvF/Hirfm2cgcxzzj2uksEGm5IIR010UWo6b38RuokNwFQ==
   dependencies:
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tonconnect/sdk@3.0.5":
-  version "3.0.5"
-  resolved "https://registry.npmmirror.com/@tonconnect/sdk/-/sdk-3.0.5.tgz#08a202bdc8ea897c37221fd69925c35cd2106323"
-  integrity sha512-ow0qnN4s3iQ/r2uXobZ7YzdQBtan/36CgCT9IP35G07g38UxsUXwzw8ANmJTDj/JPiQcIKuYBMfIwIX9zLM0wg==
+"@tonconnect/sdk@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-3.2.0.tgz#e560e2c0aa663870f248dd513aa85b7196d1e9a1"
+  integrity sha512-lh4bKpSdWDNtlKy2mv7uhdLLqnIoKRgRKbANRa/liQoPb8nDftQo6TbU1BYEmOAF32GbFn+9Sw9azPup4vfzxg==
   dependencies:
     "@tonconnect/isomorphic-eventsource" "^0.0.2"
     "@tonconnect/isomorphic-fetch" "^0.0.3"
-    "@tonconnect/protocol" "^2.2.6"
+    "@tonconnect/protocol" "^2.3.0"
 
-"@tonconnect/ui@2.0.10-beta.0":
-  version "2.0.10-beta.0"
-  resolved "https://registry.npmmirror.com/@tonconnect/ui/-/ui-2.0.10-beta.0.tgz#5f1586795db5bf9f7a286d3b2fb92910b5510dea"
-  integrity sha512-epD/ATgwQ3inCY2adVEIgwCtOuM6F2CPhXbrRl1hQggnCGsbqYAz6gSD4sxkV0BInPpo/utSwlExpNpHMB1GLA==
+"@tonconnect/ui@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@tonconnect/ui/-/ui-2.2.0.tgz#4208223317399086dbae627dcbf4e1ee5dec914e"
+  integrity sha512-a6D1iOteOkHHbOfDNZDRrCT8cZOTImh1Qdloq57iUGdXiCCrxD9sLhZ5He1qksKSlvhEUJBS1UypYxcYr9/vdw==
   dependencies:
-    "@tonconnect/sdk" "3.0.5"
+    "@tonconnect/sdk" "3.2.0"
     classnames "^2.3.2"
     csstype "^3.1.1"
     deepmerge "^4.2.2"
